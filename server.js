@@ -1,4 +1,24 @@
-const express = requrie('express');
+const express = require('express');
 const mysql = require('mysql2');
 const cTable = require('console.table');
 const inquirer = require('inquirer');
+
+const init = () => {
+    inquirer.prompt([
+        {
+            type: 'list',
+            name: 'menu',
+            message: "choose one of the following options",
+            choices: ['View All DEPARTMENTS',
+                'View All ROLES',
+                'View All EMPLOYEES',
+                'ADD a DEPARTMENT ',
+                'ADD a ROLE',
+                'ADD an EMPLOYEE',
+                'UPDATE an EMPLOYEE ROLE'
+
+            ]
+        }
+    ]) 
+}
+init();

@@ -1,7 +1,6 @@
 {
   "name": "hw10",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,5 +14,14 @@
     "express": "^4.17.3",
     "inquirer": "^8.2.1",
     "mysql2": "^2.3.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sammcowen/beeHive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sammcowen/beeHive/issues"
+  },
+  "homepage": "https://github.com/sammcowen/beeHive#readme",
+  "description": ""
 }
