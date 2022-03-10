@@ -3,7 +3,7 @@ const mysql = require('mysql2');
 const cTable = require('console.table');
 const inquirer = require('inquirer');
 
-const init = () => {
+function init()  {
     inquirer.prompt([
         {
             type: 'list',
@@ -19,6 +19,8 @@ const init = () => {
 
             ]
         }
-    ]) 
+    ]) .then(function(data){
+        console.log(data);
+    })
 }
 init();
