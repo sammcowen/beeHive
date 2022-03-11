@@ -66,6 +66,17 @@ function menu() {
             }
         });
     }
+    // functions 
+    const viewDepartments = () => {
+        let sql = `SELECT * FROM department`;
+        db.query(sql,(err,res)=> {
+            if(err) throw err;
+            console.table(res);
+            menu();
+
+        });
+        
+    }
     menu();
 
     app.listen(PORT, () => {
