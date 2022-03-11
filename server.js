@@ -33,21 +33,23 @@ function menu() {
                 'ADD an EMPLOYEE',
                 'UPDATE an EMPLOYEE ROLE'
 
-
             ],
             name: 'menu',
             message: "choose one of the following options",
 
 
         })
-        .then(function (answers) {
-            console.log('You chose' + answers.option);
-            switch (answers.option) {
+        .then(function (data) {
+            
+            switch (data.menu) {
                 case 'View All DEPARTMENTS':
                     viewDepartments();
                     break;
                 case 'View All ROLES':
                     viewRoles();
+                    break;
+                case 'View All EMPLOYEES':
+                    viewEmployees();
                     break;
                 case 'ADD a DEPARTMENT ':
                     addDepartment();
@@ -58,27 +60,47 @@ function menu() {
                 case 'ADD an EMPLOYEE':
                     addEmployee();
                     break;
-                    case 'UPDATE an EMPLOYEE ROLE':
-                        updateEmployee();
-                        break;
-                        default:exit();
+                case 'UPDATE an EMPLOYEE ROLE':
+                    updateEmployee();
+                    break;
+                
 
             }
         });
-    }
-    // functions 
-    const viewDepartments = () => {
-        let sql = `SELECT * FROM department`;
-        db.query(sql,(err,res)=> {
-            if(err) throw err;
-            console.table(res);
-            menu();
+}
+// functions 
+const viewDepartments = () => {
+    console.log('Viewing ALL DEPARTMENTS\n');
+    let sql = `SELECT * FROM department`;
+    db.query(sql, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        menu();
 
-        });
-        
-    }
-    menu();
-
-    app.listen(PORT, () => {
-        console.log(`you are now on port ${PORT}`);
     });
+
+}
+const viewRoles = () => {
+    console.log('Viewing ALL ROLES\n')
+    const sql = `SELECT * FROM role`;
+    db.query(sql,(err,res)=> {
+        if(err) throw err;
+        console.table(res);
+        menu();
+    })
+}
+const viewEmployees = () => {
+    console.log('Viewing ALL EMPLOYEES\n');
+    const sql = `SELECT * FROM employee`;
+    db.query(sql,(err,res)=> {
+        if(err) throw err;
+        console.table(res);
+        menu();
+    })
+}
+// init app with a menu of selections
+menu();
+
+app.listen(PORT, () => {
+    console.log(`you are now on port ${PORT}`);
+});
