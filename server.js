@@ -108,10 +108,14 @@ const viewRoles = () => {
 };
 const viewEmployees = () => {
     console.log('You are viewing ALL EMPLOYEES');
-    const sql = `SELECT e.id, e.first_name, e.last_name, e.role_id, r.title AS job_title, r.salary AS salary
+    const sql = `SELECT e.id, e.first_name, e.last_name, e.role_id,CONCAT (m.first_name, ' ', m.last_name) AS manager, r.title AS job_title, r.salary AS salary
     FROM employee e         
      LEFT JOIN role r 
-     ON e.role_id = r.id;`
+     ON e.role_id = r.id
+     LEFT JOIN employee m
+     ON e.manager_id = m.id
+     ;
+     `
     db.query(sql, (err, res) => {
         if (err) throw err;
         console.table(res);
