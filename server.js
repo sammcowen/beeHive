@@ -77,30 +77,37 @@ const viewDepartments = () => {
         console.table(res);
         menu();
 
-    });
+    })
 
-}
+
+};
 const viewRoles = () => {
     console.log('Viewing ALL ROLES\n')
-    const sql = `SELECT * FROM role`;
+    const sql = ` SELECT r.id, r.title, r.salary, d.name AS department
+     FROM role r 
+     LEFT JOIN department d
+     ON r.department_id = d.id;`;
     db.query(sql, (err, res) => {
         if (err) throw err;
         console.table(res);
         menu();
     })
-}
+
+};
 const viewEmployees = () => {
     console.log('You are viewing ALL EMPLOYEES');
     const sql = `SELECT e.id, e.first_name, e.last_name, e.role_id, r.title AS job_title, r.salary AS salary
     FROM employee e         
      LEFT JOIN role r 
      ON e.role_id = r.id;`
-     db.query(sql, (err,res) => {
-         if(err) throw err;
-         console.table(res);
-         menu();
-     })
-}
+    db.query(sql, (err, res) => {
+        if (err) throw err;
+        console.table(res);
+        menu();
+
+    })
+
+};
 
 // init app with a menu of selections
 menu();
