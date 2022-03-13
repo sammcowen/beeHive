@@ -9,6 +9,8 @@
 
 -[Description](#description)
 
+-[Demo](#Demo)
+
 -[Installation](#Installation)
 
 -[Usage](#Usage)
@@ -27,7 +29,10 @@
 
   ## Description
 
-  beeHive is a content management system. I built this command line application that manages a company's employee database using Node.JS, Inquirer, and MySQL npms.beeHive allows business owners the ability to VIEW, MANAGE, AND UPDATE employees, departments, and roles in the company, so they can easily plan and organize the business.
+  beeHive is a content management system. I built this command line application that manages a company's employee database using Node.JS, Inquirer, and MySQL npms. beeHive         allows business owners the ability to VIEW, MANAGE, AND UPDATE employees, departments, and roles in the company, so they can easily plan and organize the business.
+  
+  ## Demo 
+  [Link to full demo video](https://drive.google.com/file/d/1v_WeDpFXEQRN889Rayf172TAPcZhkjFv/view)
 
   ## Installation
   Follow these steps to properly install this application:
@@ -47,7 +52,7 @@
   ## Tests 
   Instructions for testing this application:
 
-  user can test this application with their own dummy data.
+  User can test this application with their own dummy data.
 
   ## Questions
   Any questions please reach out to me at my [Github](https://github.com/sammcowen)
