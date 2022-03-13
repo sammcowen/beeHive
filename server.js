@@ -90,14 +90,18 @@ const viewRoles = () => {
     })
 }
 const viewEmployees = () => {
-    console.log('Viewing ALL EMPLOYEES\n');
-    const sql = `SELECT * FROM employee`;
-    db.query(sql, (err, res) => {
-        if (err) throw err;
-        console.table(res);
-        menu();
-    })
+    console.log('You are viewing ALL EMPLOYEES');
+    const sql = `SELECT e.id, e.first_name, e.last_name, e.role_id, r.title AS job_title, r.salary AS salary
+    FROM employee e         
+     LEFT JOIN role r 
+     ON e.role_id = r.id;`
+     db.query(sql, (err,res) => {
+         if(err) throw err;
+         console.table(res);
+         menu();
+     })
 }
+
 // init app with a menu of selections
 menu();
 
