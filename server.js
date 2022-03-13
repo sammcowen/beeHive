@@ -2,7 +2,7 @@ const express = require('express');
 const mysql = require('mysql2');
 const cTable = require('console.table');
 const inquirer = require('inquirer');
-const { restoreDefaultPrompts } = require('inquirer');
+
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -10,7 +10,7 @@ const app = express();
 // middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// connect to datatbase
+// connect to database
 const db = mysql.createConnection(
     {
         host: 'localhost',
@@ -19,7 +19,13 @@ const db = mysql.createConnection(
         database: 'workplace'
     },
     console.log('you are connected to the workplace  database')
-)
+);
+// init app with a menu selection
+db.connect((err) => {
+    if (err) throw err;
+    console.log('you are connected to the workplace  database')
+    menu();
+});
 function menu() {
     inquirer
         .prompt([
@@ -32,7 +38,8 @@ function menu() {
                     'ADD a DEPARTMENT ',
                     'ADD a ROLE',
                     'ADD an EMPLOYEE',
-                    'UPDATE an EMPLOYEE ROLE'
+                    'UPDATE an EMPLOYEE ROLE',
+                    'Quit'
 
                 ],
                 name: 'menu',
@@ -64,6 +71,9 @@ function menu() {
                     break;
                 case 'UPDATE an EMPLOYEE ROLE':
                     updateEmployee();
+                    break;
+                case 'Quit':
+                    quit();
                     break;
 
 
@@ -161,10 +171,11 @@ const addEmployee = () => {
             menu();
         })
     })
-}
-// init app with a menu of selections
-menu();
-
+};
+const quit = () => {
+    db.end();
+    process.exit();
+};
 app.listen(PORT, () => {
     console.log(`you are now on port ${PORT}`);
 });
