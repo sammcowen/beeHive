@@ -172,6 +172,34 @@ const addEmployee = () => {
         })
     })
 };
+const addRole = () => {
+    inquirer.prompt([
+        {
+            type:'input',
+            name:'rolename',
+            message:'What is the name of this role?'
+        },
+        {
+            type:'input',
+            name:'rolesalary',
+            message:'What is the salary for this role?'
+            
+        },
+        {
+            type:'input',
+            name:'roledept',
+            message:'What is the department number for this role?'
+
+        }
+       
+    ]).then (function(data) {
+        db.query(`INSERT INTO role(title, salary, department_id) VALUES(?, ?, ?)`, [data.rolename, data.rolesalary, data.roledept],(err,res) => {
+                if(err)throw err;
+                console.log([data.rolename] + ` has been added to database as a role`);
+                menu();
+        })
+    })
+}
 const quit = () => {
     db.end();
     process.exit();
