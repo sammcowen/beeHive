@@ -22,23 +22,25 @@ const db = mysql.createConnection(
 )
 function menu() {
     inquirer
-        .prompt({
+        .prompt([
+            {
 
-            type: 'list',
-            choices: ['View All DEPARTMENTS',
-                'View All ROLES',
-                'View All EMPLOYEES',
-                'ADD a DEPARTMENT ',
-                'ADD a ROLE',
-                'ADD an EMPLOYEE',
-                'UPDATE an EMPLOYEE ROLE'
+                type: 'list',
+                choices: ['View All DEPARTMENTS',
+                    'View All ROLES',
+                    'View All EMPLOYEES',
+                    'ADD a DEPARTMENT ',
+                    'ADD a ROLE',
+                    'ADD an EMPLOYEE',
+                    'UPDATE an EMPLOYEE ROLE'
 
-            ],
-            name: 'menu',
-            message: "choose one of the following options",
+                ],
+                name: 'menu',
+                message: "choose one of the following options",
 
 
-        })
+            }
+        ])
         .then(function (data) {
 
             switch (data.menu) {
@@ -109,11 +111,13 @@ const viewEmployees = () => {
 
 };
 const addDepartment = () => {
-    inquirer.prompt({
-        type: 'input',
-        name: 'dept',
-        message: 'Enter the name of the department you wish to add'
-    })
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'dept',
+            message: 'Enter the name of the department you wish to add'
+        }
+    ])
         .then(function (data) {
 
             db.query(`INSERT INTO department(name) VALUES (?) `, [data.dept], function (err, res) {
@@ -122,8 +126,41 @@ const addDepartment = () => {
                 menu();
             })
 
-            
+
         })
+
+};
+const addEmployee = () => {
+    inquirer.prompt([
+        {
+            type: 'input',
+            name: 'empfirstname',
+            message: 'What is the employee first name?'
+        },
+        {
+            type: 'input',
+            name: 'emplastname',
+            message: 'What is employee last name?'
+        },
+        {
+            type: 'input',
+            name: 'emprole',
+            message: `What is this employee's role id ?`
+        }
+        ,
+        {
+            type: 'input',
+            name: 'empmanager',
+            message: `What is the manager id of this employee?`
+        }
+    ]).then(function (data) {
+
+        db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [data.empfirstname, data.emplastname, data.emprole, data.empmanager], (err, res) => {
+            if (err) throw err;
+            console.log([data.empfirstname, data.emplastname] + ' has been added to the database as an employee');
+            menu();
+        })
+    })
 }
 // init app with a menu of selections
 menu();
