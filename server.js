@@ -108,7 +108,23 @@ const viewEmployees = () => {
     })
 
 };
+const addDepartment = () => {
+    inquirer.prompt({
+        type: 'input',
+        name: 'dept',
+        message: 'Enter the name of the department you wish to add'
+    })
+        .then(function (data) {
 
+            db.query(`INSERT INTO department(name) VALUES (?) `, [data.dept], function (err, res) {
+                if (err) throw err;
+                console.log([data.dept] + ` id  is added to database`);
+                menu();
+            })
+
+            
+        })
+}
 // init app with a menu of selections
 menu();
 
