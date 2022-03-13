@@ -39,7 +39,7 @@ function menu() {
                     'ADD a ROLE',
                     'ADD an EMPLOYEE',
                     'UPDATE an EMPLOYEE ROLE',
-                    'Quit'
+                    'Finish'
 
                 ],
                 name: 'menu',
@@ -72,8 +72,8 @@ function menu() {
                 case 'UPDATE an EMPLOYEE ROLE':
                     updateEmployee();
                     break;
-                case 'Quit':
-                    quit();
+                case 'Finish':
+                    finish();
                     break;
 
 
@@ -199,10 +199,41 @@ const addRole = () => {
                 menu();
         })
     })
+};
+const updateEmployee = () => {
+    const sql = `SELECT * FROM employee;`
+    db.query(sql,(err,res)=> {
+        if(err) throw err;
+        console.table('_________________',res);
+    })
+   
+inquirer.prompt([
+    {
+        type:'input',
+        name:'eid',
+        message:"Enter the employee ID of the employee youd want to update from the list below "
+    },
+     
+    {
+        
+        type:'input',
+        name:'newrole',
+        message:'Enter the role id number for the employee from the following: 1= Teller / 2= Banker/ 3= Lead Teller / 4 = Manager (Must be a # id) ',
+      
+    }
+]).then (function(data) {
+    db.query(`UPDATE employee SET role_id = (?) WHERE employee.id = (?)`, [data.newrole, data.eid], (err,res) => {
+        if(err) throw err;
+        console.log('Employee role has been updated! ');
+        menu();
+    })
+})
 }
-const quit = () => {
+const finish = () => {
+    console.log('Thank you for using BEEHIVE database services!');
     db.end();
     process.exit();
+    
 };
 app.listen(PORT, () => {
     console.log(`you are now on port ${PORT}`);
