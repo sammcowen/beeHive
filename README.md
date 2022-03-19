@@ -32,6 +32,10 @@
   beeHive is a content management system. I built this command line application that manages a company's employee database using Node.JS, Inquirer, and MySQL npms. beeHive         allows business owners the ability to VIEW, MANAGE, AND UPDATE employees, departments, and roles in the company, so they can easily plan and organize the business.
   
   ## Demo 
+  
+  Below is a screenshot of the result of using beeHive app to produce a team roster for a company. This screenshot shows the app in a responsive web design for mobile layout:
+  ![Screenshot (218)](https://user-images.githubusercontent.com/92121595/159135719-76a6a4de-3d52-43e6-b12b-be91a3f2d9ab.png)
+  
   [Link to full demo video](https://drive.google.com/file/d/1v_WeDpFXEQRN889Rayf172TAPcZhkjFv/view)
 
   ## Installation
