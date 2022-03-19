@@ -34,7 +34,9 @@
   ## Demo 
   
   Below is a screenshot of the result of using beeHive app to produce a team roster for a company. This screenshot shows the app in a responsive web design for mobile layout:
-![Screenshot (218)](https://user-images.githubusercontent.com/92121595/159135789-3b0699e2-a27c-4909-949c-c874d1290822.png)
+  
+![Screenshot (218)](https://user-images.githubusercontent.com/92121595/159135870-f09e532d-4bfe-451d-8b96-5f51e7822abe.png)
+
   
   [Link to full demo video](https://drive.google.com/file/d/1v_WeDpFXEQRN889Rayf172TAPcZhkjFv/view)
 
